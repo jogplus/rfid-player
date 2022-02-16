@@ -1,11 +1,38 @@
-# rfid player
+# rfid-player
 
-Ref:
-https://www.reddit.com/r/shortcuts/comments/9hy7oy/shortcuts_my_collection_of_roku_external_control/
-https://developer.roku.com/docs/developer-program/debugging/external-control-api.md
-https://pimylifeup.com/raspberry-pi-rfid-rc522/
-https://spotipy.readthedocs.io/
+Use a RC522 Chip with a Raspberry Pi to change channels on Roku and play music on Spotify
 
+## Setup
+0. NOTE: This project's dependencies will **only** compile on a Raspberry Pi
+1. Create and activate your python virtual env
+    ```
+    $ python3 -m venv env
+    $ source env/bin/activate
+    ```
+2. Navigate to the root of the rfid-player folder, and install the project dependencies:
+    ```
+    $ pip3 install -r requirements.txt
+    ```
+3. Create a duplicate of the sample config and fill in the values:
+    ```
+    $ cp config.sample.py config.py
+    ```
+4. Run the rfid-player
+	```
+	$ python3 run.py
+	```
+5. (Optional) To write to rfid cards
+	```
+	$ python3 write.py
+	```
+
+## References:
+* https://www.reddit.com/r/shortcuts/comments/9hy7oy/shortcuts_my_collection_of_roku_external_control/
+* https://developer.roku.com/docs/developer-program/debugging/external-control-api.md
+* https://pimylifeup.com/raspberry-pi-rfid-rc522/
+* https://spotipy.readthedocs.io/
+
+## Example Roku App Ids
 ```
 curl "http://192.168.0.25:8060/query/apps"
 <?xml version="1.0" encoding="UTF-8" ?>

@@ -1,12 +1,20 @@
 import spotipy
 from spotipy.oauth2 import SpotifyOAuth
+import config
 import json
 
 
-class MySpotify:
-    def __init__(self):
-        scope = "user-read-playback-state user-modify-playback-state"
-        self.sp = spotipy.Spotify(auth_manager=SpotifyOAuth(scope=scope, open_browser=False))
+class SpotipyHelper:
+    def __init__(self, config: config.Config):
+        self.sp = spotipy.Spotify(
+            auth_manager=SpotifyOAuth(
+                client_id=config.spotipy_client_id,
+                client_secret=config.spotipy_secret,
+                redirect_uri=config.spotipy_redirect_uri,
+                scope=config.spotipy_scope,
+                open_browser=False,
+            ),
+        )
 
     def play_track(self, uri: str):
         devices = self.sp.devices()
@@ -18,4 +26,3 @@ class MySpotify:
                 break
 
         self.sp.start_playback(device_id=device_id, uris=[uri])
-
